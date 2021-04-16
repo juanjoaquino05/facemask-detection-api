@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/juanjoaquino05/facemask-detection-api/issues"
   },
-  "homepage": "https://github.com/juanjoaquino05/facemask-detection-api#readme"
+  "homepage": "https://github.com/juanjoaquino05/facemask-detection-api#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }

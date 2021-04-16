@@ -1,8 +1,8 @@
 var express = require('express')
 var app = express()
 
-app.get('/', function (req, res) {
-  res.send('hello world')
-})
+app.use('/', require('./routes/Index').index)
+app.use('/images', require('./routes/Images').images)
 
 app.listen(3000)
+

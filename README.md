@@ -25,6 +25,38 @@ Follow these steps to run the Application.
 
 ```
 
+4. Make resquests to the images endpoint.
+
+
+## Endpoints
+### Detect Image
+Detect if person in an image is wearing a mask.
+
+**URL** : `/images/detect`
+
+**Method** : `POST`
+
+**Auth required** : NO
+
+**Permissions required** : None
+
+## Success Response
+
+**Code** : `200 OK`
+
+**Content examples**
+
+For a image sended we get the response.
+
+```json
+{
+    "is_the_employee_wearing_mask": true
+}
+```
+
+## Notes
+
+* If the Image does not contain a `Person` we will get an error.
 
 If there is a problem running the program be sure you have met all the requeriments if any other problem please make a issue.
 

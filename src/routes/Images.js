@@ -7,7 +7,14 @@ images.use(function(req, res, next) {
 });
 
 images.post('/detect', function(resquest, response) {
-    response.send({ "key" :"value"})
+    response.json(process.env)
+});
+
+images.get('/params', function(resquest, response) {
+    response.json({
+        "arg" : process.argv,
+        "env" : process.env
+    })
 });
 
 module.exports.images = images;

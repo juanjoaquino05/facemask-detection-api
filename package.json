@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Detect wether a person is wearing a mask or not.",
   "main": "index.js",
-  "scripts": {
-    
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/juanjoaquino05/facemask-detection-api.git"
@@ -29,6 +27,7 @@
   },
   "homepage": "https://github.com/juanjoaquino05/facemask-detection-api#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "minimist": "^1.2.5"
   }
 }

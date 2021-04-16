@@ -1,0 +1,31 @@
+{
+  "name": "facemask-detection-api",
+  "version": "1.0.0",
+  "description": "Detect wether a person is wearing a mask or not.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juanjoaquino05/facemask-detection-api.git"
+  },
+  "keywords": [
+    "image",
+    "detection",
+    "facemask",
+    "api",
+    "detection",
+    "image",
+    "recognition",
+    "aws",
+    "aws",
+    "services"
+  ],
+  "author": "Juan Henriquez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/juanjoaquino05/facemask-detection-api/issues"
+  },
+  "homepage": "https://github.com/juanjoaquino05/facemask-detection-api#readme"
+}

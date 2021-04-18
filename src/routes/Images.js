@@ -1,7 +1,9 @@
+const {ImageAnalyze} = require('../services/ImageAnalyze.js')
+
 const express = require('express')
 const multer = require('multer')
 
-const maxFileSizeMB = 0 * 1024 * 1024
+const maxFileSizeMB = 4 * 1024 * 1024
 const acceptedImageMimeTypes = [
     'image/jpeg', 'image/png', 'image/jpg'
 ]
@@ -10,39 +12,34 @@ const upload = multer({
     limits: { fileSize: maxFileSizeMB }
 }).single('image')
 
-const images = express.Router();
-
-images.use(function(req, res, next) {
-    next()
-});
+const images = express.Router()
 
 images.post('/detect', (request, response) => {
-    upload(request, response, function (err) {
-        if (err instanceof multer.MulterError) {
-          // A Multer error occurred when uploading.
-          response.json({ "error" : err.message }, 500)
-        } else if (err) {
-          // An unknown error occurred when uploading.
-          response.json({ "error" : err.message }, 500)
-        }
+  upload(request, response, async function (err) {
+    if (err instanceof multer.MulterError) {
+      // A Multer error occurred when uploading.
+      return response.status(500).json({ "error" : err.message })
+    } else if (err) {
+      // An unknown error occurred when uploading.
+      return response.status(500).json({ "error" : err.message })
+    }
     
-        // Everything went fine.
-        const image = request.file
-
-        if(acceptedImageMimeTypes.indexOf(image.mimetype) < 0){
-            response.json({ "error" : "Invalid Image Type" }, 500)
-        }
-
-        response.json({ "1" : "" });
-    })
+    // Everything went fine.
+    const image = request.file
     
-});
+    if(acceptedImageMimeTypes.indexOf(image.mimetype) < 0){
+      return response.status(500).json({ "error" : "Invalid Image Type" })
+    }
+    
+    try {
+      const resultsAnalyze = await new ImageAnalyze().ProcessImage(image.buffer)
+      
+      response.status(200).json(resultsAnalyze)
+    } catch (err) {
+      return response.status(500).json({ "error" : err.message })
+    }
+  })
+    
+})
 
-images.get('/params', function(resquest, response) {
-    response.json({
-        "arg" : process.argv,
-        "env" : process.env
-    })
-});
-
-module.exports.images = images;
+module.exports.images = images
